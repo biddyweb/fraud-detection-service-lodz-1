@@ -41,7 +41,7 @@ class FraudController {
             produces = TWITTER_PLACES_ANALYZER_JSON_VERSION_1*/)
     @ApiOperation(value = "Fraudy",
             notes = "Fraudy")
-    Callable<Void> getPlacesFromTweets(@PathVariable @NotNull long loanApplicationId, @RequestBody ApplicationReqestedEventDTO body) {
+    Callable<String> getPlacesFromTweets(@PathVariable @NotNull long loanApplicationId, @RequestBody ApplicationReqestedEventDTO body) {
         return {
             ApplicationDecisionDTO decisionDTO = new ApplicationDecisionDTO()
             decisionDTO.amount = body.amount
@@ -61,7 +61,7 @@ class FraudController {
                     break
             }
 
-            client.notifyDecisionMaker(loanApplicationId, decisionDTO)
+            return client.notifyDecisionMaker(loanApplicationId, decisionDTO)
         }
     }
 

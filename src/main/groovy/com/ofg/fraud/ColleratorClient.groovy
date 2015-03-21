@@ -21,7 +21,7 @@ class ColleratorClient {
         this.asyncRetryExecutor = asyncRetryExecutor;
     }
 
-    void notifyDecisionMaker(long applicationId, ApplicationDecisionDTO applicationDecisionDTO) {
+    String notifyDecisionMaker(long applicationId, ApplicationDecisionDTO applicationDecisionDTO) {
         serviceRestClient.forService(Collaborators.COLLERATOR_DEPENDENCY_NAME)
                 .retryUsing(asyncRetryExecutor.withMaxRetries(5))
                 .put()
@@ -29,13 +29,14 @@ class ColleratorClient {
                     .andCommandKey(HystrixCommandKey.Factory.asKey("ApplicationRequestEvent")),
                 {
                     log.error("ERROR")
-                    'ERROR'
+                    return 'ERROR'
 
                 })
                 .onUrlFromTemplate("/api/loanApplication/{applicationId}").withVariables(applicationId)
                 .body(applicationDecisionDTO)
                 .ignoringResponse()
 
+        ""
     }
 
 }
