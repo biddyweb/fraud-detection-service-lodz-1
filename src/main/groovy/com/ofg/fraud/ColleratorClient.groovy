@@ -26,7 +26,7 @@ class ColleratorClient {
                 .withCircuitBreaker(HystrixCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("FraudServiceLdz"))
                     .andCommandKey(HystrixCommandKey.Factory.asKey("ApplicationRequestEvent")),
                 {
-                    ''
+                    'ERROR'
 
                 })
                 .onUrlFromTemplate("/api/loanApplication/{applicationId}").withVariables(applicationId)
