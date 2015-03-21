@@ -43,7 +43,24 @@ class FraudController {
             notes = "This will asynchronously call tweet collecting, place extracting and their propagation to Collerators")
     Callable<Void> getPlacesFromTweets(@PathVariable @NotNull long loanApplicationId, @RequestBody ApplicationReqestedEventDTO body) {
         return {
-            def decisionDTO = new ApplicationDecisionDTO()
+            ApplicationDecisionDTO decisionDTO = new ApplicationDecisionDTO()
+            decisionDTO.amount = body.amount
+            decisionDTO.firstName = body.firstName
+            decisionDTO.lastName = body.lastName
+            decisionDTO.job = body.job
+
+            switch (loanApplicationId % 3) {
+                case 0L:
+                    decisionDTO.fraudStatus = "fraud"
+                    break
+                case 1L:
+                    decisionDTO.fraudStatus = "fishy"
+                    break
+                case 2L:
+                    decisionDTO.fraudStatus = "good"
+                    break
+            }
+
             client.notifyDecisionMaker(loanApplicationId, decisionDTO)
         }
     }
