@@ -6,7 +6,9 @@ import com.netflix.hystrix.HystrixCommandKey
 import com.nurkiewicz.asyncretry.AsyncRetryExecutor
 import com.ofg.infrastructure.web.resttemplate.fluent.ServiceRestClient
 import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
 
+@Slf4j
 @CompileStatic
 class ColleratorClient {
 
@@ -26,13 +28,14 @@ class ColleratorClient {
                 .withCircuitBreaker(HystrixCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("FraudServiceLdz"))
                     .andCommandKey(HystrixCommandKey.Factory.asKey("ApplicationRequestEvent")),
                 {
+                    log.error("ERROR")
                     'ERROR'
 
                 })
                 .onUrlFromTemplate("/api/loanApplication/{applicationId}").withVariables(applicationId)
                 .body(applicationDecisionDTO)
-                .anObject()
-                .ofType(ApplicationDecisionDTO)
+                .ignoringResponse()
+
     }
 
 }
