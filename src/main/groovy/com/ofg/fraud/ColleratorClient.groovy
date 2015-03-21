@@ -29,7 +29,7 @@ class ColleratorClient {
                     ''
 
                 })
-                .onUrlFromTemplate("/loanApplication/{applicationId}").withVariables(applicationId)
+                .onUrlFromTemplate("/api/loanApplication/{applicationId}").withVariables(applicationId)
                 .body(applicationDecisionDTO)
                 .anObject()
                 .ofType(ApplicationDecisionDTO)

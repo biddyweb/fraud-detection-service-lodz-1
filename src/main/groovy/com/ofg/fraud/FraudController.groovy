@@ -19,7 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT
 @RestController
 @RequestMapping('/api/loanApplication')
 @TypeChecked
-@Api(value = "fraud", description = "Collects places from tweets and propagates them to Collerators")
+@Api(value = "fraud", description = "Fraudy cmon")
 class FraudController {
 
     private final ColleratorClient client
@@ -39,8 +39,8 @@ class FraudController {
             method = PUT
             /*consumes = TWITTER_PLACES_ANALYZER_JSON_VERSION_1,
             produces = TWITTER_PLACES_ANALYZER_JSON_VERSION_1*/)
-    @ApiOperation(value = "Async collecting and propagating of tweets for a given pairId",
-            notes = "This will asynchronously call tweet collecting, place extracting and their propagation to Collerators")
+    @ApiOperation(value = "Fraudy",
+            notes = "Fraudy")
     Callable<Void> getPlacesFromTweets(@PathVariable @NotNull long loanApplicationId, @RequestBody ApplicationReqestedEventDTO body) {
         return {
             ApplicationDecisionDTO decisionDTO = new ApplicationDecisionDTO()
