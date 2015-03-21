@@ -3,7 +3,7 @@
         "this": "com/ofg/fraud-detection-service-lodz",
         "dependencies": {
             "collerator": {
-                "path": "com/ofg/some-other-service"
+                "path": "com/ofg/loan-application-decision-maker-lodz"
             }
         }
     }

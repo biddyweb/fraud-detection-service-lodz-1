@@ -2,7 +2,7 @@ package com.ofg.fraud;
 
 import java.math.BigDecimal;
 
-public class ApplicationEventDTO {
+public class ApplicationReqestedEventDTO {
     String firstName;
     String lastName;
     String job;
